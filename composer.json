@@ -1,5 +1,5 @@
 {
-    "name": "xphere/view",
+    "name": "shopery/view",
     "description": "Helpers to work with views",
     "license": "MIT",
     "keywords": [
@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "xPheRe\\View\\": "src"
+            "Shopery\\View\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "xPheRe\\View\\Test\\": "tests"
+            "Shopery\\View\\Test\\": "tests"
         }
     },
     "type": "library",

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the xphere\view package
+ * This file is part of the shopery\view package
  *
  * (c) Berny Cantos <be@rny.cc>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace xPheRe\View\Factory;
+namespace Shopery\View\Factory;
 
-use xPheRe\View\View;
+use Shopery\View\View;
 
 /**
  * Class ViewFactory
