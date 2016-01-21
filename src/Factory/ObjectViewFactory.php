@@ -14,12 +14,22 @@ namespace Shopery\View\Factory;
 use Shopery\View\View;
 
 /**
- * Interface ViewFactory
+ * Class ObjectViewFactory
  *
  * @author Berny Cantos <be@rny.cc>
  */
-interface ViewFactory
+class ObjectViewFactory implements ViewFactory
 {
+    private $viewName;
+
+    /**
+     * @param string $viewName
+     */
+    public function __construct($viewName)
+    {
+        $this->viewName = $viewName;
+    }
+
     /**
      * Create a view for the object
      *
@@ -27,5 +37,10 @@ interface ViewFactory
      *
      * @return View
      */
-    public function createView($object);
+    public function createView($object)
+    {
+        $viewName = $this->viewName;
+
+        return new $viewName($object);
+    }
 }

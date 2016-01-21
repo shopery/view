@@ -11,9 +11,6 @@
 
 namespace Shopery\View\Factory;
 
-use Assert\Assertion;
-
-use Shopery\View\Exception\UnsupportedObjectException;
 use Shopery\View\View;
 
 /**
@@ -29,6 +26,18 @@ class RegistryViewFactory implements ViewFactory
     private $registry = [];
 
     /**
+     * Constructor
+     *
+     * @param ViewFactory[] $factories
+     */
+    public function __construct($factories = [])
+    {
+        foreach ($factories as $className => $factory) {
+            $this->registerFactory($className, $factory);
+        }
+    }
+
+    /**
      * Register a factory in the abstract factory
      *
      * @param string $className
@@ -37,13 +46,11 @@ class RegistryViewFactory implements ViewFactory
      */
     public function registerFactory($className, ViewFactory $viewFactory)
     {
-        Assertion::string($className);
-
         $this->registry[$className] = $viewFactory;
     }
 
     /**
-     * Create a view for the object
+     * Create a view for the object, looking for a suitable factory
      *
      * @param $object
      *
@@ -51,10 +58,9 @@ class RegistryViewFactory implements ViewFactory
      */
     public function createView($object)
     {
-        Assertion::true(is_object($object), sprintf(
-            'Parameter must be an object, %s found',
-            gettype($object)
-        ));
+        if (!is_object($object)) {
+            return null;
+        }
 
         foreach ($this->registry as $className => $viewFactory) {
 
@@ -62,10 +68,5 @@ class RegistryViewFactory implements ViewFactory
                 return $viewFactory->createView($object);
             }
         }
-
-        throw new UnsupportedObjectException(sprintf(
-            'Can\'t create a View from object of class "%s"',
-            get_class($object)
-        ));
     }
 }

@@ -11,14 +11,17 @@
 
 namespace Shopery\View\Factory;
 
+use Traversable;
+
 use Shopery\View\View;
+use Shopery\View\View\CollectionView;
 
 /**
- * Interface ViewFactory
+ * Class CollectionViewFactory
  *
  * @author Berny Cantos <be@rny.cc>
  */
-interface ViewFactory
+class CollectionViewFactory implements ViewFactory
 {
     /**
      * Create a view for the object
@@ -27,5 +30,12 @@ interface ViewFactory
      *
      * @return View
      */
-    public function createView($object);
+    public function createView($object)
+    {
+        if (!($object instanceof Traversable)) {
+            return null;
+        }
+
+        return new CollectionView($object);
+    }
 }
