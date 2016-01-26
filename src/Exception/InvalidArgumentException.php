@@ -9,23 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Shopery\View\Factory;
-
-use Shopery\View\View;
+namespace Shopery\View\Exception;
 
 /**
- * Interface ViewFactory
+ * Class InvalidArgumentException
+ *
+ * Thrown when an argument does not fulfill expectations
  *
  * @author Berny Cantos <be@rny.cc>
  */
-interface ViewFactory
+class InvalidArgumentException extends \InvalidArgumentException implements Exception
 {
-    /**
-     * Create a view for the object
-     *
-     * @param $object
-     *
-     * @return View
-     */
-    public function createView($object);
 }

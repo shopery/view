@@ -11,21 +11,17 @@
 
 namespace Shopery\View\Factory;
 
-use Shopery\View\View;
-
 /**
- * Interface ViewFactory
+ * Interface RootViewFactoryAware
  *
  * @author Berny Cantos <be@rny.cc>
  */
-interface ViewFactory
+interface RootViewFactoryAware
 {
     /**
-     * Create a view for the object
+     * Called before a view is returned from `RootViewFactory`
      *
-     * @param $object
-     *
-     * @return View
+     * @param RootViewFactory $rootFactory
      */
-    public function createView($object);
+    public function setRootViewFactory(RootViewFactory $rootFactory);
 }
