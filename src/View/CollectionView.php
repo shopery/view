@@ -22,7 +22,7 @@ use Shopery\View\View;
  *
  * @author Berny Cantos <be@rny.cc>
  */
-class CollectionView extends IteratorIterator implements View, RootViewFactoryAware
+class CollectionView extends IteratorIterator implements View, RootViewFactoryAware, \Countable
 {
     /**
      * @var RootViewFactory
@@ -43,5 +43,10 @@ class CollectionView extends IteratorIterator implements View, RootViewFactoryAw
     public function current()
     {
         return $this->rootFactory->createView(parent::current());
+    }
+
+    public function count()
+    {
+        return iterator_count($this);
     }
 }
